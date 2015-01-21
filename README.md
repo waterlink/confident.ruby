@@ -1,5 +1,7 @@
 # Confident.ruby
 
+[![Build Status](https://travis-ci.org/waterlink/confident.ruby.svg?branch=master)](https://travis-ci.org/waterlink/confident.ruby)
+
 Be confident and narrative when writing code in ruby.
 
 Gem contains useful abstractions for eliminating most condition and switch smells, treating anything just like a duck, implementing barricade and null object pattern efficiently.
