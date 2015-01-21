@@ -179,10 +179,26 @@ If you have something that returns `true` in case of success and `false` in case
 Confident::Result.from_condition(some_weird_external_api, "Weird external API returned unexpected error")
 ```
 
+### Pure null object
+
+Pure null object (`Confident::NullObject`) quacks to any method with itself.
+
+If you have an input value that could be `nil`, you can just wrap it in `Confident::AutoNullObject` to get either original value or pure null object if it is `nil`.
+Example usage with `AutoNullObject`:
+
+```ruby
+def do_something_with(possibly_nil_value)
+  AutoNullObject(some_possibly_nil_value).say("hello")
+end
+
+do_something_with(fetch_me_a_value)        # => "said: hello"
+do_something_with(fetch_me_a_nil_value)    # => #<Confident::NullObject:0x000001019f37f8>
+```
+
 ### TODO (to specify in this README)
 
 - lift & bind
-- null object
+- null object with ability to define your own custom null object
 - barricade
 
 ## Contributing
