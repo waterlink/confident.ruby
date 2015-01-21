@@ -22,7 +22,13 @@ Or install it yourself as:
 
 ## Usage
 
+```ruby
+require "confident"
+```
+
 ### Eliminating condition
+
+*Not implemented*
 
 Given this code:
 
@@ -74,6 +80,8 @@ end
 ```
 
 ### Eliminating switch
+
+*Not implemented*
 
 Given this code:
 
@@ -150,6 +158,26 @@ end
 ```
 
 Looks like we expanding our code and making it bigger at no time, but it is actually beneficial to us, because we don't need to duplicate knowledge on how to determine `kind` of product throughout a codebase, we just call `Product.lift(kind_string_value)`, and we are done with it. You can implement this stuff in raw ruby easily, but this library wants to cut of a boilerplate code involved in this usually.
+
+### Handling success/failure result
+
+Just use `Confident::Result`:
+
+```ruby
+def some_computation_that_may_fail
+  Confident::Result.ok(compute)
+rescue => e
+  Confident::Result.error(e.to_s)
+end
+
+puts some_computation_that_may_fail.on_error { |e| report_error(e) }.unwrap
+```
+
+If you have something that returns `true` in case of success and `false` in case of failure, you can use `Confident::Result.from_condition(boolean_value, failure_message=nil)`:
+
+```ruby
+Confident::Result.from_condition(some_weird_external_api, "Weird external API returned unexpected error")
+```
 
 ### TODO (to specify in this README)
 
