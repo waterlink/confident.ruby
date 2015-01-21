@@ -14,6 +14,12 @@ Add this line to your application's Gemfile:
 gem 'confident_ruby'
 ```
 
+or if you use `Bundler.setup`:
+
+```ruby
+gem 'confident_ruby', require: 'confident'
+```
+
 And then execute:
 
     $ bundle
